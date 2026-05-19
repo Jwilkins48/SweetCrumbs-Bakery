@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 // load environments
 dotenv.config();
@@ -18,6 +19,9 @@ app.use("/api/auth", authRoutes);
 
 // Product routes
 app.use("/api/products", productRoutes);
+
+// Order routes
+app.use("/api/orders", orderRoutes);
 
 const PORT = process.env.PORT || 5000;
 
