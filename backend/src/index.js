@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import reportRoutes from "./routes/reportRoutes.js";
 
 // load environments
 dotenv.config();
@@ -22,6 +23,9 @@ app.use("/api/products", productRoutes);
 
 // Order routes
 app.use("/api/orders", orderRoutes);
+
+// Report routes
+app.use("/api/reports", reportRoutes);
 
 const PORT = process.env.PORT || 5000;
 
