@@ -1,13 +1,19 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import authRoutes from "./routes/authRoutes.js";
 
+// load environments
 dotenv.config();
 
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// Auth routes
+app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
