@@ -1,37 +1,37 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { UserModel } from "../models/UserModel.js";
 
 const prisma = new PrismaClient();
+
+const userModel = new UserModel(prisma);
 
 // Register account
 export const register = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Validate email and password
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Please provide email and password" });
+    }
+
     // Check if user exists
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
+    const existingUser = await userModel.exists(email);
 
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create user
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-      },
-    });
+    // create with userModel which hashes password
+    await userModel.create({ email, password });
 
     res.status(201).json({ message: "User created successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -40,10 +40,15 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Validate email and password
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Please provide email and password" });
+    }
+
     // Find User
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
+    const user = await userModel.findByEmail(email);
 
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials" });
