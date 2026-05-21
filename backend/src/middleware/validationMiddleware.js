@@ -17,14 +17,12 @@ export const isValidPassword = (password) => {
 
 // Validate positive number
 export const isPositiveNumber = (val) => {
-  return !isNaN(value) && parseFloat(val) > 0;
+  return !isNaN(val) && parseFloat(val) > 0;
 };
 
 // Validate positive integer
 export const isPositiveInteger = (val) => {
-  return (
-    !isNaN(value) && parseInt(val) > 0 && Number.isInteger(parseFloat(value))
-  );
+  return !isNaN(val) && parseInt(val) > 0 && Number.isInteger(parseFloat(val));
 };
 
 // Validate all string fields
@@ -57,7 +55,7 @@ export const validateRegister = (req, res, next) => {
   }
 
   // validate password length
-  if (!isValidEmail(password)) {
+  if (!isValidPassword(password)) {
     return res
       .status(400)
       .json({ message: "Password must be at least 6 characters" });
