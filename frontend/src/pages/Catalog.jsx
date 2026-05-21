@@ -58,14 +58,14 @@ const CatalogPage = () => {
         <input
           type="text"
           placeholder="Search products..."
-          className="input input-bordered w-full md:w-auto flex-1"
+          className="input input-bordered w-full md:w-auto flex-1 rounded-md"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
         {/* Category dropdown  */}
         <select
-          className="select select-bordered w-full md:w-48"
+          className="select select-bordered w-full md:w-48 rounded-md"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
@@ -105,22 +105,24 @@ const CatalogPage = () => {
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">{product.name}</h2>
+                <div className="flex justify-between w-full items-center gap-2">
+                  <h2 className="card-title flex-50 min-w-0">{product.name}</h2>
+                  <p className="text-lg font-bold shrink-0">
+                    ${product.price.toFixed(2)}
+                  </p>
+                </div>
+
                 <p className="text-sm text-base-content/70">
                   {product.category}
                 </p>
-                <p className="text-lg font-bold">${product.price.toFixed(2)}</p>
 
-                {/* Show out of stock badge if quantity is 0 */}
+                {/* Show out of stock if quantity is 0 */}
                 {product.quantity === 0 && (
                   <span className="badge badge-error">Out of Stock</span>
                 )}
 
                 <div className="card-actions justify-between items-center mt-2">
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="btn btn-ghost btn-sm"
-                  >
+                  <Link to={`/product/${product.id}`} className="font-medium">
                     View Details
                   </Link>
                   <button

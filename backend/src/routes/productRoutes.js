@@ -13,6 +13,7 @@ import {
 } from "../middleware/validationMiddleware.js";
 
 import { protect, adminOnly } from "../middleware/authMiddleware.js";
+import { upload } from "../utils/cloudinary.js";
 
 const router = express.Router();
 
@@ -46,5 +47,22 @@ router.put(
 
 // Delete product - /api/products
 router.delete("/:id", protect, adminOnly, deleteProduct);
+
+// Upload image - Admin only
+router.post(
+  "/upload",
+  protect,
+  adminOnly,
+  upload.single("image"),
+  (req, res) => {
+    try {
+      res.json({ imageUrl: req.file.path });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Image upload failed", error: error.message });
+    }
+  },
+);
 
 export default router;
