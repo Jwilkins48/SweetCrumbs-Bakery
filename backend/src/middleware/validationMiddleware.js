@@ -25,6 +25,11 @@ export const isPositiveInteger = (val) => {
   return !isNaN(val) && parseInt(val) > 0 && Number.isInteger(parseFloat(val));
 };
 
+// allows 0 for out of stock products
+export const isNonNegativeInteger = (val) => {
+  return !isNaN(val) && parseInt(val) >= 0 && Number.isInteger(parseFloat(val));
+};
+
 // Validate all string fields
 export const validateBody = (req, res, next) => {
   if (req.body) {
@@ -69,7 +74,15 @@ export const validateProduct = (req, res, next) => {
   const { name, description, price, category, quantity } = req.body;
 
   // Check required fields
-  if (!name || !description || !price || !category || !quantity) {
+  if (
+    !name ||
+    !description ||
+    !price ||
+    !category ||
+    quantity === undefined ||
+    quantity === null ||
+    quantity === ""
+  ) {
     return res
       .status(400)
       .json({ message: "Please provide all required fields" });
@@ -80,11 +93,11 @@ export const validateProduct = (req, res, next) => {
     return res.status(400).json({ message: "Price must be a positive number" });
   }
 
-  // validate quantity is positive
-  if (!isPositiveInteger(quantity)) {
+  // validate quantity is non negative integer
+  if (!isNonNegativeInteger(quantity)) {
     return res
       .status(400)
-      .json({ message: "Quantity must be a positive integer" });
+      .json({ message: "Quantity must be a non negative integer" });
   }
 
   next();
