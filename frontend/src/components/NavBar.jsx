@@ -36,7 +36,7 @@ const Navbar = () => {
           {/* Mobile dropdown */}
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow flex items-center justify-center"
           >
             <li>
               <Link to="/catalog">Shop</Link>
@@ -63,7 +63,7 @@ const Navbar = () => {
           </ul>
         </div>
         {/* nav links */}
-        <ul className="menu menu-horizontal px-1 hidden lg:flex">
+        <ul className="menu menu-horizontal gap-1 px-1 lg:flex items-center flex">
           <li>
             <Link
               className="text-[.85rem] btn btn-outline rounded-lg"
@@ -74,7 +74,9 @@ const Navbar = () => {
           </li>
           {user?.isAdmin && (
             <li>
-              <Link to="/admin">Admin</Link>
+              <Link className="rounded-md" to="/admin">
+                Admin
+              </Link>
             </li>
           )}
         </ul>
@@ -90,11 +92,16 @@ const Navbar = () => {
       {/* Right */}
       <div className="navbar-end gap-2">
         {user ? (
-          <div>
-            <button onClick={handleLogout} className="btn btn-secondary btn-sm">
+          <div className="flex items-center">
+            <button
+              onClick={handleLogout}
+              className="btn btn-secondary btn-sm rounded-md mr-2"
+            >
               Logout
             </button>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+              <i className="fa-solid fa-cart-arrow-down text-primary mx-2 text-lg"></i>
+            </Link>
           </div>
         ) : (
           <>
