@@ -52,7 +52,7 @@ const Register = () => {
 
         {/* Error */}
         {error && (
-          <div className="alert alert-error mb-4">
+          <div className="alert alert-error mb-4 rounded-md">
             <span>{error}</span>
           </div>
         )}

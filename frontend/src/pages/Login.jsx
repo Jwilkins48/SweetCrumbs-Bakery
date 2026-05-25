@@ -35,7 +35,7 @@ const Login = () => {
         navigate("/");
       }
     } catch {
-      setError("Invalid email or password. Please try again.");
+      setError("Invalid email or password");
     } finally {
       setLoading(false);
     }
@@ -48,7 +48,7 @@ const Login = () => {
 
         {/* Error */}
         {error && (
-          <div className="alert alert-error mb-4">
+          <div className="alert alert-error mb-4 rounded-md">
             <span>{error}</span>
           </div>
         )}

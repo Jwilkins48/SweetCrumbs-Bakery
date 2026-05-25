@@ -7,7 +7,8 @@ function HomePage() {
       <div
         className="hero min-h-[70vh]"
         style={{
-          backgroundImage: "url(/cupcake.jpg)",
+          backgroundImage:
+            "url(https://res.cloudinary.com/dxnddkvk3/image/upload/v1779740295/sweetcrumbs/y4bz43k9otcjk1jth0xg.jpg)",
         }}
       >
         <div

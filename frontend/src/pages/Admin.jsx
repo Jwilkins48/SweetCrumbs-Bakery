@@ -235,7 +235,7 @@ const Admin = () => {
                 <input
                   type="text"
                   name="name"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full rounded-md"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
@@ -246,7 +246,7 @@ const Admin = () => {
                 <label className="text-sm font-medium">Description</label>
                 <textarea
                   name="description"
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full rounded-md"
                   value={formData.description}
                   onChange={handleInputChange}
                   required
@@ -260,7 +260,7 @@ const Admin = () => {
                     type="number"
                     name="price"
                     step="0.01"
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full rounded-md"
                     value={formData.price}
                     onChange={handleInputChange}
                     required
@@ -271,7 +271,7 @@ const Admin = () => {
                   <input
                     type="number"
                     name="quantity"
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full rounded-md"
                     value={formData.quantity}
                     onChange={handleInputChange}
                     required
@@ -283,7 +283,7 @@ const Admin = () => {
                 <label className="text-sm font-medium">Category</label>
                 <select
                   name="category"
-                  className="select select-bordered w-full"
+                  className="select select-bordered w-full rounded-md"
                   value={formData.category}
                   onChange={handleInputChange}
                   required
