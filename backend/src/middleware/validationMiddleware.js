@@ -12,7 +12,7 @@ export const isValidEmail = (email) => {
 
 // Validate password length
 export const isValidPassword = (password) => {
-  return password && password.length >= 6;
+  return Boolean(password && password.length >= 6);
 };
 
 // Validate positive number
