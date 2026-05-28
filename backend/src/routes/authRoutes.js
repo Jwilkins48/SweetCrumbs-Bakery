@@ -7,6 +7,7 @@ import {
 import { PrismaClient } from "@prisma/client";
 
 const router = express.Router();
+const prisma = new PrismaClient();
 
 // Create new user - /api/auth/register
 router.post("/register", validateBody, validateRegister, register);
