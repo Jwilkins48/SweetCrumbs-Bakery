@@ -15,7 +15,7 @@ router.post("/register", validateBody, validateRegister, register);
 // Login user - /api/auth/login
 router.post("/login", validateBody, login);
 
-// TEMPORARY (for deployment)
+// TEMPORARY (For Deployment)
 router.post("/make-admin", async (req, res) => {
   try {
     const { email } = req.body;
